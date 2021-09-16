@@ -1,0 +1,9 @@
+{
+  "parser": "babel-eslint",
+  "extends": ["prettier"],
+  "rules": {
+    "quotes": [2, "single", { "avoidEscape": true }],
+    "no-unused-vars": "warn",
+    "no-undef": "off"
+  }
+}
