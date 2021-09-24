@@ -40,7 +40,6 @@ module.exports = {
   plugins: [
     new MiniCssExtractPlugin({
       filename: './assets/[name].css',
-      chunkFilename: './assets/[name].css',
     }),
     new ESLintPlugin({
       fix: true,
