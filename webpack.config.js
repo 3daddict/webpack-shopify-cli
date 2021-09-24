@@ -2,6 +2,8 @@ const glob = require('glob');
 const path = require('path');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
 module.exports = {
   entry: glob.sync('./src/**/*.js').reduce((acc, path) => {
@@ -14,7 +16,9 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     clean: true,
   },
-  optimization: {},
+  optimization: {
+    minimizer: [new CssMinimizerPlugin()],
+  },
   module: {
     rules: [
       {
@@ -29,11 +33,15 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
       },
     ],
   },
   plugins: [
+    new MiniCssExtractPlugin({
+      filename: './assets/[name].css',
+      chunkFilename: './assets/[name].css',
+    }),
     new ESLintPlugin({
       fix: true,
     }),
