@@ -1,63 +1,43 @@
 <!doctype html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
-  {%- if page_description -%}
-    <meta name="description" content="{{ page_description | escape }}">
-  {%- endif -%}
-
-  <link rel="canonical" href="{{ canonical_url }}">
-  {%- if settings.favicon != blank -%}
-    <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
-  {%- endif -%}
-
-  {%- capture seo_title -%}
-    {{ page_title }}
-    {%- if current_tags -%}
-      {%- assign meta_tags = current_tags | join: ', ' -%} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags -}}
-    {%- endif -%}
-    {%- if current_page != 1 -%}
-      &ndash; {{ 'general.meta.page' | t: page: current_page }}
-    {%- endif -%}
-    {%- assign escaped_page_title = page_title | escape -%}
-    {%- unless escaped_page_title contains shop.name -%}
-      &ndash; {{ shop.name }}
-    {%- endunless -%}
-  {%- endcapture -%}
-  <title>{{ seo_title | strip }}</title>
-
-  {%- comment -%}Varibles{%- endcomment -%}
-  {{ content_for_header }}
-  {% render 'global-css' %}
-
-  {{ 'tailwind.min.css' | asset_url | stylesheet_tag }}
-  {{ 'bundle.global-css.css' | asset_url | stylesheet_tag }}
-  {{ 'bundle.runtime.js' | asset_url | script_tag }}
-  {% if settings.environment == 'development' %}
-    {{ 'bundle.liquidDev.js' | asset_url | script_tag }}
-  {% endif %}
-  {{ 'bundle.theme.js' | asset_url | script_tag }}
-</head>
-<body id="{{ page_title | handle }}" class="template-{{ template.name | handle }}">
-  {% section 'header' %}
-
-  {% if shop.customer_accounts_enabled %}
-    {% if customer %}
-      <a href="/account">account</a>
-      {{ 'log out'  | customer_logout_link }}
-    {% else %}
-      {{ 'log in ' | customer_login_link }}
-      {{ 'register' | customer_register_link }}
-    {% endif %}
-  {% endif %}
-
-  <main role="main" id="MainContent">
-    {{ content_for_layout }}
-  </main>
-
-  {% section 'footer' %}
-
-</body>
-</html>
+  <html class="no-js" lang="{{ request.locale.iso_code }}">
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta name="theme-color" content="">
+      <link rel="canonical" href="{{ canonical_url }}">
+      <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+  
+      {%- if settings.favicon != blank -%}
+        <link rel="icon" type="image/png" href="{{ settings.favicon | img_url: '32x32' }}">
+      {%- endif -%}
+  
+      <title>
+        {{ page_title }}
+        {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
+        {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
+        {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+      </title>
+  
+      {% if page_description %}
+        <meta name="description" content="{{ page_description | escape }}">
+      {% endif %}
+  
+      {% render 'meta-tags' %}
+  
+      {{ content_for_header }}
+  
+      {{ 'theme.css' | asset_url | stylesheet_tag }}
+    </head>
+    
+    <body id="{{ page_title | handle }}" class="template-{{ template.name | handle }}">
+      <div id="page">
+        {% section 'header' %}
+        <main id="MainContent" role="main" tabindex="-1">
+          {{ content_for_layout }}
+        </main>
+        {% section 'footer' %}
+      </div>
+		  <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
+    </body>
+  </html>
