@@ -1,0 +1,10 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero-home"
+    }
+  },
+  "order": [
+    "hero"
+  ]
+}
