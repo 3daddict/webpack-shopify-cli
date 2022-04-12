@@ -5,7 +5,8 @@
   "main": "webpack.config.js",
   "scripts": {
     "build": "webpack",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "webpack": "yarn install && webpack --watch --progress",
+    "shopify": "cd dist && shopify theme serve"
   },
   "author": "Mike Salvati",
   "license": "MIT",
@@ -15,6 +16,7 @@
     "@babel/preset-env": "^7.15.6",
     "@shopify/eslint-plugin": "^40.4.0",
     "babel-loader": "^8.2.2",
+    "concurrently": "^7.1.0",
     "copy-webpack-plugin": "^9.0.1",
     "css-loader": "^6.2.0",
     "css-minimizer-webpack-plugin": "^3.0.2",

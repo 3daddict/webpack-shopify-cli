@@ -11,6 +11,7 @@ module.exports = {
     acc[entry] = path;
     return acc;
   }, {}),
+  mode: 'production',
   output: {
     filename: './assets/[name].js',
     path: path.resolve(__dirname, 'dist'),
@@ -18,6 +19,10 @@ module.exports = {
   },
   optimization: {
     minimizer: [new CssMinimizerPlugin()],
+  },
+  watchOptions: {
+    ignored: /node_modules/,
+    aggregateTimeout: 800,
   },
   module: {
     rules: [
@@ -52,11 +57,11 @@ module.exports = {
         },
         {
           from: 'src/config/*.json',
-          to: 'config/[name].[ext]',
+          to: 'config/[name][ext]',
         },
         {
           from: 'src/locales/*.json',
-          to: 'locales/[name].[ext]',
+          to: 'locales/[name][ext]',
         },
         {
           from: 'src/components/**/*.liquid',
@@ -78,7 +83,6 @@ module.exports = {
             const targetFolder = diff.startsWith('templates/customers/')
               ? 'templates/customers/'
               : diff.split(path.sep)[0];
-
             return path.join(targetFolder, path.basename(absoluteFilename));
           },
         },

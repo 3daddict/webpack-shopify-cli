@@ -1,0 +1,7 @@
+{% if cart.item_count > 0 %}
+<h1 class="mx-2">Your Cart</h1>
+{% section 'cart' %}
+{% else %}
+<h2>cart</h2>
+Cart is empty
+{% endif %}
