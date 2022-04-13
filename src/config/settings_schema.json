@@ -1,10 +1,10 @@
 [
   {
     "name": "theme_info",
-    "theme_name": "Moon",
+    "theme_name": "Webpack Shopify CLI",
     "theme_version": "1.0.0",
-    "theme_author": "Emma Creative",
-    "theme_documentation_url": "https:\/\/help.shopify.com\/manual\/online-store\/themes\/os20\/themes-by-shopify\/dawn",
-    "theme_support_url": "https:\/\/support.shopify.com\/"
+    "theme_author": "Mike Salvati",
+    "theme_documentation_url": "https://github.com/3daddict/webpack-shopify-cli",
+    "theme_support_url": "https://github.com/3daddict/webpack-shopify-cli/issues"
   }
 ]

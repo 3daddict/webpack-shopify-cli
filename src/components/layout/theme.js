@@ -1,9 +1,8 @@
 import './theme.scss';
+import Alpine from 'alpinejs';
 
-console.log('Hello Theme!');
-// elements with [data-href] will be treated like links
-document
-  .querySelectorAll('[data-href]')
-  .forEach(el =>
-    el.addEventListener('click', e => (window.location.href = el.dataset.href)),
-  );
+window.Alpine = Alpine;
+Alpine.start();
+
+const ES6TestFunction = () => `Alpine Version ${window.Alpine.version} loaded!`;
+console.log(ES6TestFunction());
