@@ -19,6 +19,7 @@ consoles/*/lib/app
 
 *.ico
 *.html
+*.liquid
 *.log
 *.svg
 *.map

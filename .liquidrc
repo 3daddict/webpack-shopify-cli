@@ -6,21 +6,29 @@
       "end": "endcomment"
     },
     {
-      "type": "html",
-      "begin": "script",
-      "end": "script"
-    },
-    {
-      "type": "html",
-      "begin": "style",
-      "end": "style"
+      "type": "liquid",
+      "begin": "capture",
+      "end": "endcapture"
     }
   ],
   "html": {
     "correct": true,
     "force_attribute": false,
-    "preserve": 2,
-    "unformatted": false
+    "braces": false,
+    "preserve": 1,
+    "wrap": 85,
+    "preserve_text": true,
+    "content": true,
+    "space_close": true,
+    "tags": [
+      {
+        "tag": "source",
+        "rules": {
+          "force_attribute": true,
+          "space_close": true
+        }
+      }
+    ]
   },
   "js": {
     "preserve": 1,
@@ -46,9 +54,8 @@
   },
   "json": {
     "preserve": 0,
-    "format_array": "indent",
     "braces": true,
-    "no_semicolon": true,
-    "brace_block": false
+    "brace_block": false,
+    "no_semicolon": true
   }
 }

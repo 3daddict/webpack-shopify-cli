@@ -1,3 +1,11 @@
 {
-  "editor.formatOnSave": true
+  "editor.foldingStrategy": "indentation",
+  "editor.formatOnSave": true,
+  "liquid.format": true,
+  "files.associations": {
+    "*.liquid": "html"
+  },
+ "[html]": {
+    "editor.defaultFormatter": "sissel.shopify-liquid"
+  }
 }
