@@ -1,22 +1,22 @@
 module.exports = {
   singleQuote: true,
-  trailingComma: "all",
+  trailingComma: 'all',
   printWidth: 80,
-  proseWrap: "always",
+  proseWrap: 'always',
   tabWidth: 2,
   useTabs: false,
   bracketSpacing: true,
   semi: true,
-  arrowParens: "avoid",
+  arrowParens: 'avoid',
   overrides: [
     {
-      files: [".prettierrc", ".eslintrc"],
+      files: ['.prettierrc', '.eslintrc'],
       options: {
-        parser: "json",
+        parser: 'json',
       },
     },
     {
-      files: ["package.json"],
+      files: ['package.json'],
       options: {
         printWidth: 180,
       },
