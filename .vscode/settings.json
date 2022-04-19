@@ -1,6 +1,6 @@
 {
   "editor.foldingStrategy": "indentation",
-  "editor.formatOnSave": true,
+  "editor.formatOnSave": false,
   "liquid.format": true,
   "files.associations": {
     "*.liquid": "html"

@@ -21,8 +21,8 @@
       },
       "block_order": [
         "title",
-        "author",
         "published_date",
+        "author",
         "thumbnail",
         "content"
       ]
