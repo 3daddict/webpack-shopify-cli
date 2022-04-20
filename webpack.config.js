@@ -4,6 +4,7 @@ const ESLintPlugin = require('eslint-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
   entry: glob.sync('./src/**/*.js').reduce((acc, path) => {
@@ -18,7 +19,8 @@ module.exports = {
     clean: true,
   },
   optimization: {
-    minimizer: [new CssMinimizerPlugin()],
+    minimizer: [new CssMinimizerPlugin(), new TerserPlugin()],
+    minimize: true,
   },
   watchOptions: {
     ignored: /node_modules/,
