@@ -1,15 +1,11 @@
-const mode = process.env.NODE_ENV === 'development' ? 'development' : 'production';
+const mode =
+  process.env.NODE_ENV === 'development' ? 'development' : 'production';
 
 module.exports = {
-  mode: 'jit',
-  purge: {
-    enabled: mode === "development" ? false : true,
-    content: ["./src/**/*.{js,liquid}"],
-  },
-  darkMode: false,
+  content: ['./src/**/*.{js,liquid}'],
   theme: {
     extend: {},
   },
   variants: {},
   plugins: [],
-}
+};
