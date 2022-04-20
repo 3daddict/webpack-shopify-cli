@@ -153,23 +153,23 @@
   {%- endform -%}
 </div>
 
-<script type="application/ld+json">
+<script {{ 'application/ld+json' }}>
   {
     "@context": "http://schema.org/BlogPosting",
     "@type": "BlogPosting",
-    "headline": {{ article.title | json }},
-    "articleBody": {{ article.content | strip_html | json }},
-    {%- if article.exerpt != blank -%}"description": {{ article.exerpt | strip_html | json }},{%- endif -%}
-    {%- if article.image -%}"image" : [{{ article.image | img_url: "medium" | prepend: 'https:' | json }}],{%- endif -%}
-    "datePublished": {{ article.published_at | date: format: "default" | json }},
-    "dateCreated": {{ article.created_at | date: format: "default" | json }},
+    "headline": "{{ article.title | json }}",
+    "articleBody": "{{ article.content | strip_html | json }}",
+    "description": "{{ article.exerpt | strip_html | default: ' ' }}",
+    "image": [{% if article.image %}"{{ article.image | img_url: 'medium' | prepend: 'https:' }}"{% endif %}],
+    "datePublished": "{{ article.published_at | date: format: 'default' | json }}",
+    "dateCreated": "{{ article.created_at | date: format: 'default' | json }}",
     "author": {
       "@type": "Person",
-      "name": {{ article.author | json }}
+      "name": "{{ article.author | json }}"
     },
     "publisher": {
       "@type": "Organization",
-      "name": {{ shop.name | json }}
+      "name": "{{ shop.name | json }}"
     }
   };
 </script>
