@@ -23,6 +23,7 @@ module.exports = {
     minimize: true,
   },
   watchOptions: {
+    poll: true,
     ignored: /node_modules/,
     aggregateTimeout: 800,
   },

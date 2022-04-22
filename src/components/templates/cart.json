@@ -1,13 +1,20 @@
 {
   "sections": {
-    "cart-items": {
-      "type": "main-cart-items"
-    },
-    "cart-footer": {
-      "type": "main-cart-footer",
-      "blocks": {},
-      "block_order": []
+    "template": {
+      "type": "template-cart",
+      "blocks": {
+        "subtotal": {
+          "type": "subtotal"
+        },
+        "update-button": {
+          "type": "update_button"
+        },
+        "checkout-button": {
+          "type": "checkout_button"
+        }
+      },
+      "block_order": ["subtotal", "update-button", "checkout-button"]
     }
   },
-  "order": ["cart-items", "cart-footer"]
+  "order": ["template"]
 }
