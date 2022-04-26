@@ -1,26 +1,28 @@
-<section class="mx-3">
+<div class="px-4 py-8">
+  {% paginate collection.products by section.settings.number_of_products_per_page %}
+    <h1 class="text-3xl text-center">{{ collection.title }}</h1>
+    <div class="max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+        {% for product in collection.products %}
+          {%- render 'product-card', product: product -%}
+        {%- else -%}
+          <p>There are no products inside this collection</p>
+        {% endfor %}
+      </div>
+    </div>
+    {%- render 'pagination', pagination: paginate -%}
+  {% endpaginate %}
+</div>
 
-  <h1>{{ collection.title }}</h1>
-  <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-    {% for product in collection.products %}
-      <a class="mx-auto" href="{{ product.url | within: collection }}">
-        <div class="max-w-xs my-6 overflow-hidden bg-white rounded-lg shadow-lg">
-          <div class="px-4 py-2">
-            <h2 class="h-12 text-lg font-bold text-gray-900 uppercase">{{ product.title }}</h2>
-            <p class="mt-1 text-sm text-gray-600">{{ product.description | strip_html | truncate: 40 }}</p>
-          </div>
-          <img class="object-cover w-full h-56 mt-2" src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}" />
-          <div class="flex items-center justify-between p-4">
-            <h1 class="text-xl font-bold text-gray-900">{{ product.price | money_without_trailing_zeros }}</h1>
-            <button class="px-3 py-1 text-sm font-semibold text-gray-900 bg-gray-200 rounded">
-              {%- if product.available -%}VIEW
-            ITEM{%- else -%}SOLD OUT{%- endif -%}
-            </button>
-          </div>
-        </div>
-      </a>
-    {% else %}
-      <p>no matches</p>
-    {% endfor %}
-  </div>
-</section>
+{% schema %}
+{
+ "name": "template-collection",
+"settings": [
+  {
+  "type": "number",
+  "id": "number_of_products_per_page",
+  "default": 6,
+  "label": "Number of products shown per page"
+  }
+]
+} {% endschema %}
