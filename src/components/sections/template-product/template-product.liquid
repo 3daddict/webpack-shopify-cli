@@ -1,75 +1,37 @@
-{% assign current_variant = product.selected_or_first_available_variant %}
-{% assign featured_image = current_variant.featured_image | default: product.featured_image %}
-<section class="overflow-hidden text-gray-700 bg-white body-font">
-  <div class="container px-5 py-6 mx-auto lg:py-24">
-    <div class="flex flex-wrap mx-auto lg:w-4/5">
-      <img alt="{{ featured_image.alt | escape }}" class="object-cover object-center w-full border border-gray-200 rounded lg:w-1/2" src="{{ featured_image | img_url: 'large' }}">
-      <div class="w-full mt-6 lg:w-1/2 lg:pl-10 lg:py-6 lg:mt-0">
-        {%- comment -%}<h2 class="text-sm tracking-widest text-gray-500 title-font">BRAND NAME</h2>{%- endcomment -%}
-        <h1 class="mb-1 text-3xl font-medium text-gray-900 title-font" id="">{{ product.title }}</h1>
-        <p class="leading-relaxed">{{ product.content }}</p>
-        <form enctype="multipart/form-data" id="AddToCartForm" method="post">
-          <div class="flex items-center mt-6">
-            <div class="flex items-center ml-6">
-              <span class="mr-3">Size</span>
-              <div class="relative">
-                <select
-                  class="py-2 pl-3 pr-10 text-base border border-gray-400 rounded appearance-none focus:outline-none focus:border-red-500"
-                  id="option2">
-                  {% for color_option in product.options_by_name['Size'].values %}
-                    <option>{{ color_option }}</option>
-                  {% endfor %}
-                </select>
-                <span class="absolute top-0 right-0 flex items-center justify-center w-10 h-full text-center text-gray-600 pointer-events-none">
-                  <svg
-                    class="w-4 h-4"
-                    fill="none"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    stroke="currentColor"
-                    viewbox="0 0 24 24">
-                    <path d="M6 9l6 6 6-6"></path>
-                  </svg>
-                </span>
-              </div>
+{{ 'template-product.css' | asset_url | stylesheet_tag }}
+
+<div class="max-w-6xl mx-auto my-8">
+  <div class="grid grid-cols-1 gap-3 md:grid-cols-2">
+    <div class="product--medias">
+      <div class="hidden md:block">
+        {%- for media in product.media -%}
+          <div class="p-2 overflow-hidden h-100">
+            {%- render 'product-media', media: media -%}
+          </div>
+        {%- endfor -%}
+      </div>
+      <div class="md:hidden">
+        <div class="swiper h-96">
+          <!-- Swiper -->
+          <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">Slide 1</div>
+              <div class="swiper-slide">Slide 2</div>
+              <div class="swiper-slide">Slide 3</div>
+              <div class="swiper-slide">Slide 4</div>
+              <div class="swiper-slide">Slide 5</div>
+              <div class="swiper-slide">Slide 6</div>
+              <div class="swiper-slide">Slide 7</div>
+              <div class="swiper-slide">Slide 8</div>
+              <div class="swiper-slide">Slide 9</div>
             </div>
-            <div class="flex items-center ml-6">
-              <span class="mr-3">Color</span>
-              <div class="relative">
-                <select
-                  class="py-2 pl-3 pr-10 text-base border border-gray-400 rounded appearance-none focus:outline-none focus:border-red-500"
-                  id="option1">
-                  {% for color_option in product.options_by_name['Color'].values %}
-                    <option>{{ color_option }}</option>
-                  {% endfor %}
-                </select>
-                <span class="absolute top-0 right-0 flex items-center justify-center w-10 h-full text-center text-gray-600 pointer-events-none">
-                  <svg
-                    class="w-4 h-4"
-                    fill="none"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    stroke="currentColor"
-                    viewbox="0 0 24 24">
-                    <path d="M6 9l6 6 6-6"></path>
-                  </svg>
-                </span>
-              </div>
-            </div>
+            <div class="swiper-pagination"></div>
           </div>
-          <div class="pb-5 mt-3 mb-5 border-b-2 border-gray-200">
-            {% render 'input-counter' %}
-          </div>
-          <div class="flex">
-            <span class="text-2xl font-medium text-gray-900 title-font">{{ product.price | money_without_trailing_zeros }}</span>
-            <button class="flex px-6 py-2 ml-auto text-white bg-blue-500 border-0 rounded focus:outline-none hover:bg-blue-600" type="submit" name="add" id="AddToCartBtn" value="{{ current_variant.id }}">ADD TO CART</button>
-          </div>
-        </form>
+        </div>
       </div>
     </div>
+    <div class="product--information"></div>
   </div>
-</section>
+</div>
 
-{{ 'template-product.js' | asset_url | script_tag }}
+<script src="{{ 'template-product.js' | asset_url }}" defer="defer"></script>
