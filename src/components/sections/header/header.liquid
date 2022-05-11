@@ -3,7 +3,9 @@
 {%- else -%}
   {%- assign main_menu_linklist = section.settings.menu.links -%}
 {%- endif -%}
-<div class="relative bg-white" x-data="{ mobileMenuOpen: false }">
+<div
+  class="relative bg-white"
+  x-data="{ mobileMenuOpen: false, searchBarOpen: false }">
   <div class="px-4 mx-auto sm:px-6">
     <div class="flex items-center justify-center py-6 md:justify-start md:space-x-10">
       {%- comment -%}STORE NAME | STORE LOGO{%- endcomment -%}
@@ -55,6 +57,12 @@
       </nav>
       {%- comment -%}CART BUTTON | ACCOUNT LINKS{%- endcomment -%}
       <div class="items-center justify-end hidden space-x-5 md:flex md:flex-1">
+        <button
+          class="text-base text-gray-500 whitespace-nowrap hover:text-gray-900"
+          type="button"
+          x-on:click="searchBarOpen = true">
+          {%- render 'icon-search' -%}
+        </button>
         <a class="text-base text-gray-500 whitespace-nowrap hover:text-gray-900" href="{{ routes.cart_url }}">
           {%- render 'icon-shopping-bag' -%}
         </a>
@@ -122,6 +130,28 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+  <div class="absolute top-0 z-50 w-full bg-white border" x-show="searchBarOpen">
+    <button
+      class="absolute top-0 right-0 mt-5 mr-5 text-gray-500"
+      type="button"
+      x-on:click="searchBarOpen = false">
+      {%- render 'icon-close' -%}
+    </button>
+    <div class="flex items-center justify-center h-40">
+      <form action="{{ routes.search_url }}" method="get" class="flex-auto mx-2">
+        <div class="relative px-10 text-gray-500 border">
+          <input
+            class="w-full h-10 px-5 pr-10 text-sm bg-white rounded-full focus:outline-none"
+            name="q"
+            placeholder="Search"
+            type="search">
+          <button class="absolute top-0 right-0 mt-2 mr-2 md:mr-20" type="submit">
+            {%- render 'icon-search' -%}
+          </button>
+        </div>
+      </form>
     </div>
   </div>
 </div>
