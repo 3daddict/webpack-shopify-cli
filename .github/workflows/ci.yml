@@ -1,6 +1,17 @@
 name: CI
 on: [push]
 jobs:
+  build:
+    name: Build with Webpack
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: borales/actions-yarn@v2.3.0
+        with:
+          cmd: install
+      - uses: borales/actions-yarn@v2.3.0
+        with:
+          cmd: build
   lhci:
     name: Lighthouse
     runs-on: ubuntu-latest
