@@ -9,8 +9,8 @@ jobs:
       - name: Lighthouse
         uses: shopify/lighthouse-ci-action@1.0
         with:
-          theme_root: /dist
-          store: s-webhook
+          theme_root: dist
+          store: ${{ secrets.SHOP_STORE }}
           access_token: ${{ secrets.SHOP_ACCESS_TOKEN }}
           lhci_github_app_token: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
           lhci_min_score_performance: 0.1
