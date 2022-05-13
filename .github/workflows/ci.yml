@@ -28,5 +28,6 @@ jobs:
           theme_root: ./dist/
           store: ${{ secrets.SHOP_STORE }}
           access_token: ${{ secrets.SHOP_ACCESS_TOKEN }}
+          lhci_github_app_token: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
           lhci_min_score_performance: 0.1
           lhci_min_score_accessibility: 0.1
