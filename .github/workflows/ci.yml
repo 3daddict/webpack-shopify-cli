@@ -9,11 +9,12 @@ jobs:
       - name: Lighthouse
         uses: shopify/lighthouse-ci-action@1.0
         with:
-          app_id: ${{ secrets.SHOP_APP_ID }}
-          app_password: ${{ secrets.SHOP_APP_PASSWORD }}
+          theme_root: ./dist
           store: ${{ secrets.SHOP_STORE }}
-          password: ${{ secrets.SHOP_PASSWORD }}
-          lhci_github_app_token: ${{ secrets.LHCI_GITHUB_TOKEN }}
+          access_token: ${{ secrets.SHOP_ACCESS_TOKEN }}
+          lhci_github_app_token: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+          lhci_min_score_performance: 0.6
+          lhci_min_score_accessibility: 0.9
   theme-check:
     name: Theme Check
     runs-on: ubuntu-latest
@@ -22,4 +23,5 @@ jobs:
       - name: Theme Check
         uses: shopify/theme-check-action@v1
         with:
+          theme_root: './dist'
           token: ${{ github.token }}
