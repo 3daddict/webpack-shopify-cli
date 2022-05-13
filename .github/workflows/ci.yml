@@ -1,22 +1,6 @@
 name: CI
 on: [push]
 jobs:
-  build:
-    runs-on: ubuntu-latest # sets the version of linux we want to use, should be what you have on your server
-    strategy:
-      fail-fast: false # tells github to not run further steps if this one fails
-      matrix:
-        node-version: [14.x] # sets the version of node we want to use, should be what you have on your server
-    steps:
-      - uses: actions/checkout@v2 # fetches your commit to test it
-      - name: Use Node.js ${{ matrix.node-version }} # names our step
-        uses: actions/setup-node@v1 # downloads node and npm
-        with:
-          node-version: ${{ matrix.node-version }}
-      - run: npm install # installs your dependencies
-      - run: npm build # build your dist directory
-        env:
-          CI: true # shows terminal output!
   lhci:
     name: Lighthouse
     runs-on: ubuntu-latest
