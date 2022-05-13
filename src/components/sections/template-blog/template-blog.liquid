@@ -8,7 +8,7 @@
             <div class="overflow-hidden bg-white">
               {%- if article.image -%}
                 <a href="{{ article.url }}">
-                  <img class="object-cover w-full rounded h-80" src="{{ article.image | img_url: 'medium' }}" alt="{{ article.image.alt }}">
+                  <img class="object-cover w-full rounded h-80" src="{{ article.image | img_url: 'medium' }}" alt="{{ article.image.alt }}" width="{{ article.image.width }}" height="{{ article.image.height }}" loading="lazy">
                 </a>
               {%- else -%}
                 <a href="{{ article.url }}">

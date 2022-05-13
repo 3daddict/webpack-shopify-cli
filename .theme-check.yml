@@ -10,6 +10,7 @@ exclude_categories: []
 
 ignore:
   - node_modules/*
+  - snippets/icon-*
 
 ConvertIncludeToRender:
   enabled: true
