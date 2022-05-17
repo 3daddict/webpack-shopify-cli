@@ -160,7 +160,7 @@
     "headline": "{{ article.title | json }}",
     "articleBody": "{{ article.content | strip_html | json }}",
     "description": "{{ article.exerpt | strip_html | default: ' ' }}",
-    "image": [{% if article.image %}"{{ article.image | img_url: 'medium' | prepend: 'https:' }}"{% endif %}],
+    "image": [{% if article.image %}"{{ article.image | image_url: width: '240' | prepend: 'https:' }}"{% endif %}],
     "datePublished": "{{ article.published_at | date: format: 'default' | json }}",
     "dateCreated": "{{ article.created_at | date: format: 'default' | json }}",
     "author": {
@@ -218,4 +218,5 @@
       "limit": 1
     }
   ]
-} {% endschema %}
+}
+{% endschema %}

@@ -9,7 +9,7 @@
     <link crossorigin href="https://cdn.shopify.com" rel="preconnect">
 
     {%- if settings.favicon != blank -%}
-      <link rel="icon" type="image/png" href="{{ settings.favicon | img_url: '32x32' }}">
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: '32', height: '32' }}">
     {%- endif -%}
 
     <title>
