@@ -15,7 +15,14 @@
                   {%- else -%}
                     {%- assign collection_image = collection.products.first.image -%}
                   {%- endif -%}
-                  <img class="object-cover w-full h-full transition duration-1000 ease-in-out transform hover:scale-105" src="{{ collection_image | img_url: 'medium' }}" alt="{{ collection.title | escape }}">
+                  <img 
+                    class="object-cover w-full h-full transition duration-1000 ease-in-out transform hover:scale-105" 
+                    src="{{ collection_image | image_url: width: 240 }}" 
+                    alt="{{ collection.title | escape }}"
+                    width="240"
+                    height="240" 
+                    loading="lazy"
+                  >
                 </div>
               </a>
               <div class="p-4 bg-gray-100">
@@ -42,4 +49,5 @@
       "default": "Shop All"
     }
   ]
-} {% endschema %}
+} 
+{% endschema %}

@@ -22,7 +22,7 @@
                 <td class="flex flex-col px-2 py-4 justify-content">
                   <a href="{{ item.url }}">
                     {%- if item.image -%}
-                      <img src="{{ item.image | img_url: 'small' }}" alt="{{ item.title | escape }}" class="object-cover w-20 h-20 border">
+                      <img src="{{ item.image | image_url: width: 160 }}" alt="{{ item.title | escape }}" width="{{ item.image.width }}" height="{{ item.image.height }}" class="object-cover w-20 h-20 border" loading="lazy">
                     {%- else -%}
                       {{ 'product-1' | placeholder_svg_tag: 'w-20 h-20 object-cover border' }}
                     {%- endif -%}
@@ -124,4 +124,5 @@
       "limit": 1
      }
   ]
-} {% endschema %}
+} 
+{% endschema %}
