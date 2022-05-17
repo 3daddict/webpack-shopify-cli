@@ -1,4 +1,4 @@
-name: CI
+name: Lighthouse Check
 on: [push]
 jobs:
   lhci:
