@@ -11,7 +11,9 @@
               <div class="relative">
                 <div class="w-full bg-gray-200 rounded-md min-80 overflo-hidden lg:h-80">
                   {%- if order.line_items.first.image -%}
-                    <img class="object-cover object-center w-full h-full" src="{{ order.line_items.first.image | image_url: width: '240' }}" alt="{{ order.line_items.first.alt }}" width="{{ order.line_items.first.width }}" height="{{ order.line_items.first.height }}" loading="lazy">
+                    <a href="{{ order.customer_url }}">
+                      <img class="object-cover object-center w-full h-full" src="{{ order.line_items.first.image | image_url: width: '240' }}" alt="{{ order.line_items.first.alt }}" width="{{ order.line_items.first.width }}" height="{{ order.line_items.first.height }}" loading="lazy">
+                    </a>
                   {%- else -%}
                     {{ 'product-1' | placeholder_svg_tag: 'object-cover object-center w-full h-full' }}
                   {%- endif -%}
