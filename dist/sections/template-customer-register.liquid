@@ -1,0 +1,72 @@
+<div class="flex items-center justify-center h-full px-6 py-12 md:px-4 lg:px-8">
+  <div class="w-full max-w-md space-y-8">
+    <div>
+      <h1 class="mt-6 text-3xl font-bold text-center">Register an account</h1>
+    </div>
+    <div class="mt-8">
+      {%- form 'create_customer' -%}
+        {%- if form.errors -%}
+          <div
+            class="relative px-4 py-3 text-red-700 bg-red-100 border border-red-400 rounded"
+            role="alert">
+            <strong class="font-bold">Error!</strong>
+            <p class="block sm:inline">{{ form.errors | default_errors }}</p>
+          </div>
+        {%- endif -%}
+        <div class="my-2">
+          <label class="sr-only" for="first_name">First Name</label>
+          <input
+            autocomplete="first_name"
+            class="relative block w-full px-3 py-2 border rounded"
+            id="first_name"
+            name="customer[first_name]"
+            placeholder="First name"
+            type="text">
+        </div>
+        <div class="my-2">
+          <label class="sr-only" for="last_name">Last Name</label>
+          <input
+            autocomplete="last_name"
+            class="relative block w-full px-3 py-2 border rounded"
+            id="last_name"
+            name="customer[last_name]"
+            placeholder="Last name"
+            type="text">
+        </div>
+        <div class="my-2">
+          <label class="sr-only" for="birthday">Birthday</label>
+          <input
+            class="relative block w-full px-3 py-2 border rounded"
+            id="birthday"
+            name="customer[note][Birthday]"
+            type="date">
+        </div>
+        <div class="my-2">
+          <label class="sr-only" for="email_address">Email address</label>
+          <input
+            autocomplete="email"
+            class="relative block w-full px-3 py-2 border rounded"
+            id="email_address"
+            name="customer[email]"
+            placeholder="email address"
+            type="email">
+        </div>
+        <div class="my-2">
+          <label class="sr-only" for="password">Password</label>
+          <input
+            autocomplete="new-password"
+            class="relative block w-full px-3 py-2 border rounded"
+            id="password"
+            name="customer[password]"
+            placeholder="password"
+            type="current-password">
+        </div>
+        <div>
+          <button
+            class="relative w-full px-4 py-2 text-sm font-medium text-white bg-gray-600 rounded hover:bg-gray-900"
+            type="submit">Create account</button>
+        </div>
+      {%- endform -%}
+    </div>
+  </div>
+</div>
