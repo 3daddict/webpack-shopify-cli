@@ -5,7 +5,8 @@
 {%- endif -%}
 <div
   class="relative bg-white"
-  x-data="{ mobileMenuOpen: false, searchBarOpen: false }">
+  x-data="{ mobileMenuOpen: false, searchBarOpen: false }"
+  x-cloak >
   <div class="px-4 mx-auto sm:px-6">
     <div class="flex items-center justify-center py-6 md:justify-start md:space-x-10">
       {%- comment -%}STORE NAME | STORE LOGO{%- endcomment -%}
@@ -173,4 +174,5 @@
         "default": "main-menu"
     }
   ]
-} {% endschema %}
+}
+{% endschema %}

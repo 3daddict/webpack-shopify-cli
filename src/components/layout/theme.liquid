@@ -30,7 +30,13 @@
 
     {{ content_for_header }}
 
-    {{ 'theme.css' | asset_url | stylesheet_tag }}
+    {{ 'theme.css' | asset_url | stylesheet_tag }} 
+    {%- comment -%}Blipping Fix for AplineJS{%- endcomment -%}
+    <style>
+      [x-cloak] {
+        display: none !important;
+      }
+    </style>
   </head>
 
   <body id="{{ page_title | handle }}" class="template-{{ template.name | handle }}">
