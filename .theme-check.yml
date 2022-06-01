@@ -10,7 +10,6 @@ exclude_categories: []
 
 ignore:
   - node_modules/*
-  - snippets/icon-*
 
 ConvertIncludeToRender:
   enabled: true
@@ -22,9 +21,10 @@ LiquidTag:
   min_consecutive_statements: 5
 
 MissingTemplate:
-  enabled: false
+  enabled: true
   ignore: []
-  ignore_missing: []
+  ignore_missing:
+    - snippets/icon-*
 
 NestedSnippet:
   enabled: true
@@ -64,7 +64,8 @@ UnusedAssign:
 
 UnusedSnippet:
   enabled: true
-  ignore: []
+  ignore:
+    - snippets/icon-*
 
 MatchingSchemaTranslations:
   enabled: true
