@@ -1,0 +1,54 @@
+<div class="flex items-center justify-center min-h-full px-4 py-12 sm:px-6 lg:px-8">
+  <div class="w-full max-w-md space-y-8">
+    <div>
+      <h1 class="mt-6 text-3xl font-bold text-center text-gray-700">Activate account</h1>
+      <p class="mt-4 text-center">Create your password to activate your account</p>
+    </div>
+
+    <div>
+      {% form 'activate_customer_password', class: 'space-y-4', id: 'activate_account_form' %}
+        {% if form.errors %}
+          <div
+            class="relative px-4 py-3 text-red-700 bg-red-100 border border-red-700"
+            role="alert">
+            <strong class="font-bold">Error!</strong>
+            <span class="block sm:inline">
+              {{ form.errors | default_errors }}
+            </span>
+          </div>
+        {% endif %}
+        <div>
+          <label for="password">Password</label>
+          <input
+            autocomplete="new-password"
+            class="relative block w-full px-3 py-2 text-gray-700 placeholder-gray-300 border"
+            id="password"
+            name="customer[password]"
+            placeholder="New password"
+            type="password">
+        </div>
+
+        <div>
+          <label for="confirm_password">Confirm password</label>
+          <input
+            autocomplete="new-password"
+            class="relative block w-full px-3 py-2 text-gray-700 placeholder-gray-300 border"
+            id="confirm_password"
+            name="customer[password_confirmation]"
+            placeholder="Confirm your password"
+            type="password">
+        </div>
+
+        <div class="block md:flex">
+          <button
+            class="w-full px-4 py-2 text-sm font-medium text-white bg-gray-700 border hover:bg-gray-900"
+            type="submit">Activate account</button>
+          <button
+            class="w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border hover:bg-gray-700 hover:text-white"
+            name="decline"
+            type="submit">Decline invitation</button>
+        </div>
+      {% endform %}
+    </div>
+  </div>
+</div>
