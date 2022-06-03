@@ -30,8 +30,7 @@
 
     {{ content_for_header }}
 
-    {{ 'theme.css' | asset_url | stylesheet_tag }} 
-    {%- comment -%}Blipping Fix for AplineJS{%- endcomment -%}
+    {{ 'theme.css' | asset_url | stylesheet_tag }} {%- comment -%}Blipping Fix for AplineJS{%- endcomment -%}
     <style>
       [x-cloak] {
         display: none !important;

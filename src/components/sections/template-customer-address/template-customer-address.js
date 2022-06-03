@@ -12,7 +12,7 @@ class CustomerAddress {
     if (deleteButtons.length < 1) return;
 
     deleteButtons.forEach(button => {
-      button.addEventListener('click', function (e) {
+      button.addEventListener('click', function () {
         var url = this.dataset.url;
 
         var confirmation = window.confirm(
@@ -90,7 +90,7 @@ class CustomerAddress {
     if (addressesSelector.length < 1) return;
 
     addressesSelector.forEach(select => {
-      select.addEventListener('change', function (e) {
+      select.addEventListener('change', function () {
         var provinces = this.options[this.selectedIndex].dataset.provinces;
         var arrayOfProvince = JSON.parse(provinces);
 
@@ -116,4 +116,4 @@ class CustomerAddress {
   }
 }
 
-const customerAddress = new CustomerAddress();
+new CustomerAddress();
