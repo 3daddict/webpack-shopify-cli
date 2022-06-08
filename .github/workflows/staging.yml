@@ -15,10 +15,9 @@ jobs:
       - uses: borales/actions-yarn@v2.3.0
         with:
           cmd: build
-      - uses: discolabs/deploy-shopify-theme-action@v1
-        with:
-          store: ${{ secrets.SHOP_STORE }}
-          password: ${{ secrets.SHOP_ACCESS_TOKEN }}
-          theme_id: ${{ secrets.SHOPIFY_THEME_ID }}
-          path: 'dist'
-#           additional_args: '--ignored-file=config/settings_data.json'
+      - uses: pgrimaud/action-shopify@master
+        env:
+          SHOPIFY_PASSWORD: ${{ secrets.SHOP_ACCESS_TOKEN }}
+          SHOPIFY_STORE_URL: ${{ secrets.SHOP_STORE }}
+          SHOPIFY_THEME_ID: ${{ secrets.SHOP_THEME_ID }}
+          THEME_PATH: dist
