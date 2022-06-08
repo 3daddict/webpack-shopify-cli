@@ -20,8 +20,6 @@ jobs:
           yarn install
           yarn build
       # Save the compiled files to a temp directory /dist for use in later steps
-      - name: Create dir
-        run: mkdir dist
       - name: Archive compiled artifacts
         uses: actions/upload-artifact@v3
         with:
