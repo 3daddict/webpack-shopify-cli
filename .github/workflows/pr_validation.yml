@@ -25,6 +25,9 @@ jobs:
         with:
           name: temp_distribution_folder
           path: tmp
+      - name: Display structure of downloaded files
+        run: ls -R
+        working-directory: tmp
   # Run Shopify theme check on the dist folder, findings will annotate in the PR Files
   theme-check:
     name: Theme Check
