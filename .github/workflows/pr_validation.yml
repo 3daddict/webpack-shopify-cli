@@ -40,7 +40,7 @@ jobs:
         working-directory: dist
       - name: Theme Check
         uses: shopify/theme-check-action@v1
-        with:
+#         with:
 #           theme_root: 'dist'
 #           token: ${{ github.token }}
 #           base: 'main'
