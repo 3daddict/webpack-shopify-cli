@@ -22,7 +22,7 @@ jobs:
       - name: Archive compiled artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: distribution_folder
+          name: dist
           path: dist
 
   shopify_theme_check:
