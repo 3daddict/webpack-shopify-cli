@@ -12,23 +12,3 @@ jobs:
       - uses: borales/actions-yarn@v2.3.0
         with:
           cmd: install
-  Build:
-    name: Build Dist
-    runs-on: ubuntu-latest
-    needs: Install
-    steps:
-      - uses: borales/actions-yarn@v2.3.0
-        with:
-          cmd: build
-  Deploy:
-    name: Deploy to Staging
-    runs-on: ubuntu-latest
-    needs: Build
-    steps:
-      - uses: discolabs/deploy-shopify-theme-action@v1
-        with:
-          store: ${{ secrets.SHOP_STORE }}
-          password: ${{ secrets.SHOP_ACCESS_TOKEN }}
-          theme_id: ${{ secrets.SHOP_THEME_ID }}
-          path: 'dist'
-          additional_args: '--ignored-file=config/settings_data.json'
