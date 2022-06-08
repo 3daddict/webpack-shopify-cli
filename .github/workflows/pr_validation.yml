@@ -36,7 +36,7 @@ jobs:
         id: download
         with:
           name: 'distribution_folder'
-          path: dist
+          path: ./dist
       - name: 'Echo download path'
         run: echo ${{steps.download.outputs.download-path}}
       - name: Display structure of downloaded files
