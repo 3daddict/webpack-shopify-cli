@@ -35,10 +35,10 @@ jobs:
           path: dist
       - name: Display structure of downloaded files
         run: ls -R
-        working-directory: 'dist'
+        working-directory: dist
       - name: Theme Check
         uses: shopify/theme-check-action@v1
         with:
           theme_root: 'dist'
           token: ${{ github.token }}
-          base: main
+          base: origin/main
