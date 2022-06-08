@@ -10,7 +10,6 @@ on:
 
 jobs:
   install-and-build:
-    name: Install and Compile Files
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -29,23 +28,17 @@ jobs:
     name: Theme Check
     runs-on: ubuntu-latest
     needs: install-and-build
-
     steps:
       - uses: actions/checkout@v2
       - uses: actions/download-artifact@v3
-        id: download
         with:
-          name: 'distribution_folder'
-          path: ./dist
-      - name: 'Echo download path'
-        run: echo ${{steps.download.outputs.download-path}}
+          path: dist
       - name: Display structure of downloaded files
         run: ls -R
-        
-      - uses: actions/checkout@v2
+        working-directory: dist
       - name: Theme Check
         uses: shopify/theme-check-action@v1
         with:
-          theme_root: './dist'
+          theme_root: 'dist'
           token: ${{ github.token }}
-          base: main
+          base: staging
