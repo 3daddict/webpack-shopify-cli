@@ -20,10 +20,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: build_and_install
     steps:
-      - name: Download the dist folder
+      - name: Download all workflow run artifacts
         uses: actions/download-artifact@v3
-        with:
-          name: distribution_folder
       - uses: discolabs/deploy-shopify-theme-action@v1
         with:
           store: ${{ secrets.SHOP_STORE }}
