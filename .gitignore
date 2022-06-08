@@ -1,6 +1,7 @@
 # Ignore dependnecies and compiled directories
 node_modules
 dist
+!dist/.gitkeep
 # Ignore lock files
 *.lock
 package-lock.json
