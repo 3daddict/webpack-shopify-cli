@@ -35,6 +35,13 @@ jobs:
     needs: install-and-build
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/download-artifact@v3
+        with:
+          path: dist
+      - name: Display structure of downloaded files
+        run: ls -R
+        working-directory: dist
+      - uses: actions/checkout@v2
       - name: Theme Check
         uses: shopify/theme-check-action@v1
         with:
@@ -46,6 +53,13 @@ jobs:
     runs-on: ubuntu-latest
     needs: install-and-build
     steps:
+      - uses: actions/checkout@v2
+      - uses: actions/download-artifact@v3
+        with:
+          path: dist
+      - name: Display structure of downloaded files
+        run: ls -R
+        working-directory: dist
       - uses: actions/checkout@v2
       - name: Lighthouse
         uses: shopify/lighthouse-ci-action@1.0
