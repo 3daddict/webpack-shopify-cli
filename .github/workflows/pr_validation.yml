@@ -40,5 +40,5 @@ jobs:
         uses: shopify/theme-check-action@v1
         with:
           theme_root: 'dist'
-          token: ${{ github.token }}
+#           token: ${{ github.token }}
 #           base: 'main'
