@@ -13,18 +13,17 @@ jobs:
       - name: Archive compiled artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: dist
-          path: |
-            dist
-      - name: Archive code coverage results
-        uses: actions/upload-artifact@v3
-        with:
           name: distribution_folder
           path: dist
-  deploy:
+
+  deploy_to_staging_theme:
     runs-on: ubuntu-latest
     needs: build_and_install
     steps:
+      - name: Download the dist folder
+        uses: actions/download-artifact@v3
+        with:
+          name: distribution_folder
       - uses: discolabs/deploy-shopify-theme-action@v1
         with:
           store: ${{ secrets.SHOP_STORE }}
