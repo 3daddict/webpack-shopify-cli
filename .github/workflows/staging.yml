@@ -34,4 +34,4 @@ jobs:
           password: ${{ secrets.SHOP_ACCESS_TOKEN }}
           theme_id: ${{ secrets.SHOP_THEME_ID }}
           path: 'dist'
-          additional_args: '--ignored-file=config/settings_data.json'
+#           additional_args: '--ignored-file=config/settings_data.json'
