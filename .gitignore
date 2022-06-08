@@ -1,7 +1,11 @@
-*.DS_Store
+# Ignore dependnecies and compiled directories
 node_modules
+dist
+# Ignore lock files
 *.lock
 package-lock.json
+# Ignore temporary files
+*.DS_Store
 *error.log
 .idea
 .DS_Store
