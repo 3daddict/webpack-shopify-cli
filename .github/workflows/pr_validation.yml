@@ -41,4 +41,4 @@ jobs:
         with:
           theme_root: 'dist'
           token: ${{ github.token }}
-          base: origin/main
+          base: 'main'
