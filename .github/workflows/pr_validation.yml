@@ -1,0 +1,57 @@
+name: Validate Pull Requests
+
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  pull_request:
+    branches: [ "staging" ]
+    types: ['opened', 'edited', 'reopened', 'synchronize']
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  # Install Dependencies and Run Build Command
+  install_and_build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: yarn install and build
+        run: |
+          yarn install
+          yarn build
+      # Save the compiled files to a temp directory /dist for use in later steps
+      - name: Archive compiled artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: distribution_folder
+          path: dist
+  # Run Shopify theme check on the dist folder, findings will annotate in the PR Files
+  theme-check:
+    name: Theme Check
+    runs-on: ubuntu-latest
+    needs: install_and_build
+    steps:
+      - uses: actions/checkout@v2
+      - name: Theme Check
+        uses: shopify/theme-check-action@v1
+        with:
+          theme_root: 'dist'
+          token: ${{ github.token }}
+  # Run Google Lighthouse Audit on the dist folder, a report will generate on the PR action notes
+  lighthouse-audit:
+    name: Lighthouse
+    runs-on: ubuntu-latest
+    needs: install_and_build
+    steps:
+      - uses: actions/checkout@v2
+      - name: Lighthouse
+        uses: shopify/lighthouse-ci-action@1.0
+        with:
+          theme_root: dist
+          store: ${{ secrets.SHOP_STORE }}
+          access_token: ${{ secrets.SHOP_ACCESS_TOKEN }}
+          product_handle: ${{ secrets.SHOP_PRODUCT_HANDLE }}
+          collection_handle: ${{ secrets.SHOP_COLLECTION_HANDLE }}
+          lhci_github_app_token: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+          lhci_min_score_performance: 0.9
+          lhci_min_score_accessibility: 0.9
