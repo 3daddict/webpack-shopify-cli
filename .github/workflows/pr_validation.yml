@@ -18,7 +18,7 @@ jobs:
       - name: yarn install and build
         run: |
           yarn install
-          yarn build
+          yarn action
       # Save the compiled files to a temp directory /dist for use in later steps
       - name: Archive compiled artifacts
         uses: actions/upload-artifact@v3
