@@ -1,6 +1,6 @@
 # Ignore dependnecies and compiled directories
 node_modules
-dist
+# dist
 # Ignore lock files
 *.lock
 package-lock.json
