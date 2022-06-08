@@ -8,16 +8,17 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 14
       - uses: borales/actions-yarn@v2.3.0
         with:
           cmd: install
       - uses: borales/actions-yarn@v2.3.0
         with:
           cmd: build
-      - uses: pgrimaud/action-shopify@master
-        env:
-          SHOPIFY_PASSWORD: ${{ secrets.SHOP_ACCESS_TOKEN }}
-          SHOPIFY_STORE_URL: ${{ secrets.SHOP_STORE }}
-          SHOPIFY_THEME_ID: ${{ secrets.SHOP_THEME_ID }}
-          THEME_PATH: dist
+      - uses: discolabs/deploy-shopify-theme-action@v1
+        with:
+          store: ${{ secrets.SHOP_STORE }}
+          password: ${{ secrets.SHOP_ACCESS_TOKEN }}
+          theme_id: ${{ secrets.SHOP_THEME_ID }}
+          path: ''
+          additional_args: '--ignored-file=config/settings_data.json'
