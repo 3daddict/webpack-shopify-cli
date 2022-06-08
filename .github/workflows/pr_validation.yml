@@ -3,14 +3,14 @@ name: Validate Pull Requests
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   pull_request:
-    branches: [ "staging" ]
+    branches: ['staging']
     types: ['opened', 'edited', 'reopened', 'synchronize']
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 jobs:
   # Install Dependencies and Run Build Command
-  install_and_build:
+  install-and-build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -29,7 +29,7 @@ jobs:
   theme-check:
     name: Theme Check
     runs-on: ubuntu-latest
-    needs: install_and_build
+    needs: install-and-build
     steps:
       - uses: actions/checkout@v2
       - name: Theme Check
@@ -41,7 +41,7 @@ jobs:
   lighthouse-audit:
     name: Lighthouse
     runs-on: ubuntu-latest
-    needs: install_and_build
+    needs: install-and-build
     steps:
       - uses: actions/checkout@v2
       - name: Lighthouse
