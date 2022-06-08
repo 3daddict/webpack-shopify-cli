@@ -3,6 +3,7 @@ on: [push]
 jobs:
   install:
     name: Install Dependencies
+    if: success() || failure()
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -12,9 +13,9 @@ jobs:
       - uses: borales/actions-yarn@v2.3.0
         with:
           cmd: install
-          if: success() || failure()
   build:
     name: Build Distribution Folder
+    if: success() || failure()
     runs-on: ubuntu-latest
     steps:
       - uses: borales/actions-yarn@v2.3.0
@@ -23,6 +24,7 @@ jobs:
           if: success() || failure()
   deploy:
     name: Deploy to Staging theme
+    if: success() || failure()
     runs-on: ubuntu-latest
     steps:
       - uses: discolabs/deploy-shopify-theme-action@v1
