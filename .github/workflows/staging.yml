@@ -1,0 +1,24 @@
+name: Deply to Staging
+on: [push]
+jobs:
+  build:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - uses: borales/actions-yarn@v2.3.0
+        with:
+          cmd: install
+      - uses: borales/actions-yarn@v2.3.0
+        with:
+          cmd: build
+      - uses: discolabs/deploy-shopify-theme-action@v1
+        with:
+          store: ${{ secrets.SHOP_STORE }}
+          password: ${{ secrets.SHOP_ACCESS_TOKEN }}
+          theme_id: ${{ secrets.SHOPIFY_THEME_ID }}
+          path: 'dist'
+#           additional_args: '--ignored-file=config/settings_data.json'
