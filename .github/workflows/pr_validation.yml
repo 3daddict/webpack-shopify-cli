@@ -21,7 +21,7 @@ jobs:
       - name: Archive compiled artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: distribution_folder
+          name: dist
           path: dist
 
   shopify_theme_check:
@@ -34,7 +34,9 @@ jobs:
         with:
           path: dist
       - name: Display structure of downloaded files
-        run: ls -R
+        run: |
+          pwd
+          ls -R
         working-directory: dist
       - name: Theme Check
         uses: shopify/theme-check-action@v1
