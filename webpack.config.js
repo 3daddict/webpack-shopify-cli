@@ -5,6 +5,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const mode = process.argv[process.argv.indexOf('--mode') + 1] === 'production';
 
 module.exports = {
   entry: glob.sync('./src/**/*.js').reduce((acc, path) => {
@@ -15,11 +16,16 @@ module.exports = {
   mode: 'production',
   output: {
     filename: './assets/[name].js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, `${mode ? 'tmp' : 'dist'}`),
     clean: true,
   },
   optimization: {
-    minimizer: [new CssMinimizerPlugin(), new TerserPlugin()],
+    minimizer: [
+      new CssMinimizerPlugin(),
+      new TerserPlugin({
+        extractComments: false,
+      }),
+    ],
     minimize: true,
   },
   watchOptions: {

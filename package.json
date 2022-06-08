@@ -5,6 +5,7 @@
   "main": "webpack.config.js",
   "scripts": {
     "build": "webpack",
+    "action": "webpack --mode production",
     "webpack": "yarn install && webpack --watch --progress",
     "shopify": "cd dist && shopify theme serve"
   },
