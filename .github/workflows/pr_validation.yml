@@ -22,7 +22,6 @@ jobs:
       - name: Archive compiled artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: distribution_folder
           path: dist
 
   shopify_theme_check:
@@ -42,6 +41,6 @@ jobs:
       - name: Theme Check
         uses: shopify/theme-check-action@v1
         with:
-          theme_root: './distribution_folder'
+          theme_root: './dist'
           token: ${{ github.token }}
           base: main
