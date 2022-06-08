@@ -9,7 +9,7 @@ jobs:
       - name: yarn install and build
         run: |
           yarn install
-          yarn build --if-present
+          yarn build
       - name: Archive compiled artifacts
         uses: actions/upload-artifact@v3
         with:
