@@ -22,7 +22,7 @@ jobs:
       - name: Archive compiled artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: compiled-dist-folder
+          name: distribution_folder
           path: dist
 
   shopify_theme_check:
@@ -33,13 +33,16 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/download-artifact@v3
+        with:
+          path: dist
       - name: Display structure of downloaded files
         run: ls -R
+        working-directory: dist
         
       - uses: actions/checkout@v2
       - name: Theme Check
         uses: shopify/theme-check-action@v1
         with:
-          theme_root: './compiled-dist-folder'
+          theme_root: './dist'
           token: ${{ github.token }}
           base: main
