@@ -1,5 +1,5 @@
 name: Deply to Staging
-on: [push]
+on: [merge]
 jobs:
   build_and_install:
     runs-on: ubuntu-latest
@@ -27,7 +27,7 @@ jobs:
       - name: Display structure of downloaded files
         run: ls -R
         working-directory: dist
-        
+
       - uses: discolabs/deploy-shopify-theme-action@v1
         with:
           store: ${{ secrets.SHOP_STORE }}
