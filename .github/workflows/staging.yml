@@ -1,5 +1,8 @@
 name: Deply to Staging
-on: [merge]
+on:
+  push:
+    branches:
+      - staging
 jobs:
   build_and_install:
     runs-on: ubuntu-latest
