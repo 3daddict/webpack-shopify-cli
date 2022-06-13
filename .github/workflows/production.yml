@@ -19,7 +19,7 @@ jobs:
           name: distribution_folder
           path: dist
 
-  deploy_to_staging_theme:
+  deploy_to_publilshed_theme:
     runs-on: ubuntu-latest
     needs: build_and_install
     steps:
@@ -37,4 +37,5 @@ jobs:
           password: ${{ secrets.SHOP_ACCESS_TOKEN }}
           theme_id: ${{ secrets.PUBLISHED_SHOP_THEME_ID }}
           path: 'dist'
+          additional_args: '--allow-live'
 #           additional_args: '--ignored-file=config/settings_data.json'
