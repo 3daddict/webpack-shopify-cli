@@ -37,6 +37,8 @@ jobs:
         uses: shopify/theme-check-action@v1
         with:
           theme_root: './dist/distribution_folder'
+          token: ${{ github.token }}
+          base: main
   lighthouse-audit:
     name: Lighthouse
     runs-on: ubuntu-latest
