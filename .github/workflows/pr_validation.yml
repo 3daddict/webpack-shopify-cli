@@ -55,10 +55,10 @@ jobs:
         uses: shopify/lighthouse-ci-action@1.0
         with:
           theme_root: './dist/distribution_folder'
-          store: experimental-theme.myshopify.com
-          access_token: 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
+          store: ${{ secrets.SHOP_STORE }}
+          access_token: ${{ secrets.SHOP_ACCESS_TOKEN }}
           product_handle: ${{ secrets.SHOP_PRODUCT_HANDLE }}
           collection_handle: ${{ secrets.SHOP_COLLECTION_HANDLE }}
-          lhci_github_app_token: w78tPwmNVlSpu8:26418218:hsDCwc7wvT
+          lhci_github_app_token: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
           lhci_min_score_performance: 0.9
           lhci_min_score_accessibility: 0.9
