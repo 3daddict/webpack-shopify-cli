@@ -1,5 +1,4 @@
 name: Validate Pull Requests
-
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   pull_request:
@@ -9,8 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  # Install Dependencies and Run Build Command
-  install-and-build:
+  build-and-install:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -19,35 +17,44 @@ jobs:
         run: |
           yarn install
           yarn build
-      # Save the compiled files to a temp directory /dist for use in later steps
       - name: Archive compiled artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: temp_distribution_folder
-          path: tmp
-  # Run Shopify theme check on the dist folder, findings will annotate in the PR Files
+          name: distribution_folder
+          path: dist
   theme-check:
     name: Theme Check
     runs-on: ubuntu-latest
-    needs: install-and-build
+    needs: build-and-install
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/download-artifact@v3
+        with:
+          path: dist
+      - name: Display structure of downloaded files
+        run: ls -R
+        working-directory: '.'
       - name: Theme Check
         uses: shopify/theme-check-action@v1
         with:
-          theme_root: 'tmp'
+          theme_root: './dist/distribution_folder'
           token: ${{ github.token }}
-  # Run Google Lighthouse Audit on the dist folder, a report will generate on the PR action notes
+          base: main
   lighthouse-audit:
     name: Lighthouse
     runs-on: ubuntu-latest
-    needs: install-and-build
+    needs: build-and-install
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/download-artifact@v3
+        with:
+          path: dist
+      - name: Display structure of downloaded files
+        run: ls -R
+        working-directory: '.'
       - name: Lighthouse
         uses: shopify/lighthouse-ci-action@1.0
         with:
-          theme_root: tmp
+          theme_root: './dist/distribution_folder'
           store: ${{ secrets.SHOP_STORE }}
           access_token: ${{ secrets.SHOP_ACCESS_TOKEN }}
           product_handle: ${{ secrets.SHOP_PRODUCT_HANDLE }}

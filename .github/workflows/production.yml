@@ -1,8 +1,8 @@
-name: Deply to Staging
+name: Deply to Production
 on:
   push:
     branches:
-      - staging
+      - main
 jobs:
   build_and_install:
     runs-on: ubuntu-latest
@@ -35,6 +35,6 @@ jobs:
         with:
           store: ${{ secrets.SHOP_STORE }}
           password: ${{ secrets.SHOP_ACCESS_TOKEN }}
-          theme_id: ${{ secrets.SHOP_THEME_ID }}
+          theme_id: ${{ secrets.PUBLISHED_SHOP_THEME_ID }}
           path: 'dist'
 #           additional_args: '--ignored-file=config/settings_data.json'
