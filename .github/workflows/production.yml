@@ -29,13 +29,13 @@ jobs:
           path: dist
       - name: Display structure of downloaded files
         run: ls -R
-        working-directory: dist
+        working-directory: '.'
 
       - uses: discolabs/deploy-shopify-theme-action@v1
         with:
           store: ${{ secrets.SHOP_STORE }}
           password: ${{ secrets.SHOP_ACCESS_TOKEN }}
           theme_id: ${{ secrets.PUBLISHED_SHOP_THEME_ID }}
-          path: 'dist'
+          path: './dist/distribution_folder'
           additional_args: '--allow-live'
 #           additional_args: '--ignored-file=config/settings_data.json'
