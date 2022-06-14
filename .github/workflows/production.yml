@@ -36,6 +36,6 @@ jobs:
           store: ${{ secrets.SHOP_STORE }}
           password: ${{ secrets.SHOP_ACCESS_TOKEN }}
           theme_id: ${{ secrets.PUBLISHED_SHOP_THEME_ID }}
-          path: './dist/distribution_folder'
+          path: './dist'
           additional_args: '--allow-live'
 #           additional_args: '--ignored-file=config/settings_data.json'
